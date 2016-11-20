@@ -60,11 +60,18 @@ body {
   }
 
   .new-tweet form textarea {
+    background-color: #fff;
     display: block;
     width: 100%;
     margin: 0 0 1em;
     padding-bottom: 1em
   }
+
+  .textarea:focus {
+    outline: none !important;
+    border:1px solid #00a087;
+    box-shadow: 0 0 10px #00a087;
+}
 
   .new-tweet .counter {
     float: right;
@@ -82,14 +89,21 @@ body {
     border-radius: 10px;
     border-radius: 10px;
     color: #224750;
-    opacity: 0.5;
-    transition: opacity 1s ease;
+    /*opacity: 0.5;*/
+    /*transition: opacity 1s ease;*/
     margin-bottom: 20px;
     transition: all ease 1s;
+    -webkit-font-smoothing: antialiased;
+    -webkit-transform: translateZ(0px);
   }
 
   article.tweet:hover {
     opacity: 1.0;
+    transform: scale(1.05);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.5);
+
   }
 
     article.tweet header {
@@ -125,6 +139,13 @@ body {
     article.tweet p {
       margin: 0;
       padding: 20px 10px;
+      overflow: auto;
+      /* max-width: 300px; */
+      /*border-left: 0 solid transparent;
+      border-right: 0 solid transparent;*/
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+
     }
     article.tweet footer {
       background-color: #fff;
@@ -171,6 +192,14 @@ body {
           padding: 5px;
           border-radius: 5px;
         }
+
+  /* style overrides */
+
+  nav i:focus {
+    border: 0;
+    box-shadow: none;
+    /*height: auto;*/
+  }
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */

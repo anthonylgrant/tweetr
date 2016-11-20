@@ -21,7 +21,6 @@ $( document ).ready(function() {
     //   } else if (this.value.length > text_max) {
     //     this.value = this.value.substring(0, max);
     //   }
-
       if (this.value.length > text_max) {
         $('.counter').addClass("counter-red");
       } else {

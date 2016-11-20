@@ -37,9 +37,12 @@ nav .tweet-button {
     height: 60%;
     color: #00a087;
     transition: all ease 500ms;
+    background-color: #fff;
+    line-height: 100%;
   }
 
   nav .tweet-button:hover {
     color: #00a087;
     transform: scale(1.075);
+    background-color: #eee;
   }
