@@ -3,16 +3,13 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-$(document).ready (function() {
-
+$(function() {
   function renderTweets(tweets) {
-
     var parentEl = $('#tweets-container').html('');
     // loops through tweets
-      // calls createTweetElement for each tweet
-      // takes return value and appends it to the tweets container
-      tweets.forEach(function(tweet){
-      console.log(tweet.user.name);
+    // calls createTweetElement for each tweet
+    // takes return value and appends it to the tweets container
+    tweets.forEach(function(tweet){
       var el = createTweetElement(tweet);
       parentEl.prepend(el);
     });
@@ -20,10 +17,9 @@ $(document).ready (function() {
 
   // CREATE TWEET ELEMENTS & APPEND TO EACH OTHER BEFORE APPENDING
   // TO DOM
-    // IMPLEMENT MOMENT JS ON EPOCH TIME FROM DB
-    //
+  // IMPLEMENT MOMENT JS ON EPOCH TIME FROM DB
   function createTweetElement(tweet) {
-    var newDate = new Date(tweet.created_at);
+    var newDate    = new Date(tweet.created_at);
     var momentTime = moment(newDate).fromNow();
     var tweeticons = '<span class="tweet-icons"><a><i class="fa fa-flag" aria-hidden="true"></i></a><a><i class="fa fa-retweet" aria-hidden="true"></i></a><a><i class="fa fa-heart" aria-hidden="true"></i></a></span>';
 
@@ -65,6 +61,7 @@ $(document).ready (function() {
 
   // USE AJAX TO RENDER TWEETS
   function loadTweets() {
+    // what happens if this fails, consider adding error handling
     $.ajax({
       method: 'get',
       url: '/tweets/',
@@ -84,8 +81,11 @@ $(document).ready (function() {
     var formText = $('#tweetsformtext').val();
     var tweetInput = $(this);
     // make sure not submitting form if input is invalid
+    // there is a lot going on in this handler (multiple conditions and an ajax request)
+    // consider breaking this stuff out into functions
+    // also consider caching your $ selectors
+    // instead of repeating $(.counter) you should use $counter var
     if (formText === "")  {
-      event.preventDefault();
         $(function() {
           $('.form-empty').delay(500).fadeIn('normal', function() {
             $(this).delay(2500).fadeOut();
@@ -96,7 +96,6 @@ $(document).ready (function() {
     }
     // prevent form submission if submission is > 140 characters
     if (formText.length > 140)  {
-    event.preventDefault();
       $(function() {
         $('.form-maxed').delay(500).fadeIn('normal', function() {
           $(this).delay(2500).fadeOut();
@@ -109,6 +108,7 @@ $(document).ready (function() {
     //resets counter to 140 characters
     $('.counter').text('140 characters remaining');
 
+    // whats happens if this fails, should have error handling
     $.ajax({
       method: 'post',
       url: tweetInput.attr('action'),
@@ -123,8 +123,4 @@ $(document).ready (function() {
 
   //INVOKE LOAD TWEETS w/ AJAX FUNCTION
   loadTweets();
-
 });
-
-
-

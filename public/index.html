@@ -90,15 +90,18 @@ Compose</button>
     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
     </main>
       <script type="text/javascript">
-
-        $('.tweet-button').click(function() {
+        // why not put this into a module?
+        // using 'on' is more flexible and can benefit you
+        // when dynamically loading elements and having their event bound
+        // otherwise dynamic els may not have events bound.
+        $('.tweet-button').on('click', function() {
           $( '.new-tweet' ).toggle('slide', {
             direction: 'up'
-        }, 500);
+           }, 500);
         });
-        $('.tweet-button').click(function() {
+
+        $('.tweet-button').on('click', function() {
           $( '#tweetsformtext' ).focus();
-          // $( '#tweetsformtext' ).focus();
         });
       </script>
   </body>

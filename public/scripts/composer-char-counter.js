@@ -1,15 +1,14 @@
-$( document ).ready(function() {
+$(function() {
     console.log( "the function has loaded" );
-    var $textarea = $(".textarea");
-    var $textcounter = $('.counter');
-    var text_max = 140;
-    console.log($textarea);
-    console.log($textcounter);
+    var $tweetsForm  = $("#tweetsform");
+    var $textArea    = $tweetsForm.find(".textarea");
+    var $textCounter = $tweetsForm.find('.counter');
+    var TEXT_MAX     = 140;
 
-    $textarea.on('input', function(e) {
-      var text_length = $(this).val().length;
-      var text_remaining = text_max - text_length;
-      $textcounter.html(text_remaining + ' characters remaining');
+    $textArea.on('input', function(e) {
+      var textLength    = $(this).val().length;
+      var textRemaining = TEXT_MAX - textLength;
+      $textCounter.html(textRemaining + ' characters remaining');
 
     // UNCOMMENT IF YOU WANT TO RESTRICT USER FROM TYPING MORE THAN 140 CHARACTERS
     //   if (e.which < 0x20) {
@@ -21,12 +20,10 @@ $( document ).ready(function() {
     //   } else if (this.value.length > text_max) {
     //     this.value = this.value.substring(0, max);
     //   }
-      if (this.value.length > text_max) {
-        $('.counter').addClass("counter-red");
+      if (textLength > TEXT_MAX) {
+        $textCounter.addClass("counter-red");
       } else {
-        $('.counter').removeClass("counter-red");
+        $textCounter.removeClass("counter-red");
       }
     });
-
-    console.log($(".new-tweet").text());
 });
